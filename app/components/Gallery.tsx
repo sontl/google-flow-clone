@@ -76,7 +76,7 @@ const galleryData = {
 const GalleryColumn = ({ items, direction = "up", speed = 40 }: { items: typeof galleryData.col1, direction?: "up" | "down", speed?: number }) => {
     return (
         <div
-            className="relative h-[800px] overflow-hidden w-full"
+            className="relative h-[400px] md:h-[800px] overflow-hidden w-full"
             style={{
                 maskImage: "linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)",
                 WebkitMaskImage: "linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)"

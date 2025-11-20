@@ -87,7 +87,7 @@ export const Creators = () => {
                         onClick={() => window.open(creator.youtube, "_blank")}
                     >
                         <motion.h2
-                            className={`text-6xl md:text-9xl font-medium tracking-tighter transition-colors duration-300 relative z-20 ${hoveredIndex === index ? creator.color : "text-white"
+                            className={`text-4xl md:text-9xl font-medium tracking-tighter transition-colors duration-300 relative z-20 ${hoveredIndex === index ? creator.color : "text-white"
                                 }`}
                             animate={{
                                 opacity: hoveredIndex !== null && hoveredIndex !== index ? 0.2 : 1,

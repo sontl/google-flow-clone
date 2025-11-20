@@ -125,14 +125,14 @@ const BackgroundVideo = () => {
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-4 z-10">
-      <div className="max-w-5xl mx-auto text-center space-y-10 z-10">
+    <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 md:pt-32 pb-20 px-4 z-10">
+      <div className="max-w-5xl mx-auto text-center space-y-8 md:space-y-10 z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 className="text-7xl md:text-9xl font-medium tracking-tighter text-white leading-[0.9] mb-8 drop-shadow-2xl">
+          <h1 className="text-5xl md:text-9xl font-medium tracking-tighter text-white leading-[0.9] mb-6 md:mb-8 drop-shadow-2xl">
             Turn your ideas <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 animate-gradient-x">
               into motion.
@@ -144,7 +144,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto leading-relaxed font-light drop-shadow-lg"
+          className="text-lg md:text-2xl text-white/80 max-w-2xl mx-auto leading-relaxed font-light drop-shadow-lg px-4"
         >
           Flow is an AI-first creative suite that allows you to generate, edit, and iterate on video content with unprecedented control.
         </motion.p>
@@ -153,14 +153,14 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 pt-6 md:pt-8"
         >
-          <button className="group relative flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black text-lg font-medium overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+          <button className="w-full sm:w-auto group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white text-black text-lg font-medium overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]">
             <span className="relative z-10">Start Creating</span>
             <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
           </button>
 
-          <button className="group flex items-center gap-3 px-8 py-4 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-white text-lg font-medium transition-all hover:bg-white/10 hover:border-white/40 hover:scale-105">
+          <button className="w-full sm:w-auto group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-white text-lg font-medium transition-all hover:bg-white/10 hover:border-white/40 hover:scale-105">
             <Play className="w-5 h-5 fill-current" />
             Watch Showreel
           </button>
@@ -172,19 +172,19 @@ const Hero = () => {
 
 const Overview = () => {
   return (
-    <section id="overview" className="relative py-32 px-4 z-10 flex flex-col items-center justify-center text-center">
+    <section id="overview" className="relative min-h-screen flex flex-col items-center justify-center py-20 md:py-32 px-4 z-10 text-center">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-5xl mx-auto space-y-8"
+        className="max-w-5xl mx-auto space-y-6 md:space-y-8"
       >
-        <h2 className="text-5xl md:text-7xl font-normal tracking-tight text-white leading-[1.1]">
+        <h2 className="text-4xl md:text-7xl font-normal tracking-tight text-white leading-[1.1]">
           Flow is an AI filmmaking tool <br />
           built with and for creatives.
         </h2>
-        <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed">
+        <p className="text-lg md:text-2xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed px-4">
           Seamlessly create cinematic clips, scenes and stories using <br className="hidden md:block" />
           Google’s most capable generative AI models.
         </p>
@@ -206,7 +206,7 @@ const ProductShowcase = () => {
 
   return (
     <>
-      <section className="relative py-20 px-4 z-10 flex justify-center">
+      <section className="relative py-12 md:py-20 px-4 z-10 flex justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -214,7 +214,7 @@ const ProductShowcase = () => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="w-full max-w-[1200px] relative"
         >
-          <div className="relative aspect-[16/9] rounded-[32px] overflow-hidden border border-white/10 bg-[#1a1a1a] shadow-2xl group">
+          <div className="relative aspect-[16/9] rounded-[20px] md:rounded-[32px] overflow-hidden border border-white/10 bg-[#1a1a1a] shadow-2xl group">
             {/* Main Video Content */}
             <div className="absolute inset-0">
               <img
@@ -237,10 +237,10 @@ const ProductShowcase = () => {
             </div>
 
             {/* Top Bar */}
-            <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-start pointer-events-none">
+            <div className="absolute top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-start pointer-events-none">
               <span className="text-xs font-medium text-white/60 uppercase tracking-wider">Flow</span>
-              <div className="flex gap-4 pointer-events-auto">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-xs text-white/80">
+              <div className="flex gap-2 md:gap-4 pointer-events-auto">
+                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-xs text-white/80">
                   <div className="w-2 h-2 rounded-full bg-white/50" />
                   Watch Flow TV
                 </div>
@@ -257,24 +257,24 @@ const ProductShowcase = () => {
             <div className="absolute inset-0 flex items-center justify-center z-20">
               <div
                 onClick={() => setIsModalOpen(true)}
-                className="w-24 h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center cursor-pointer hover:scale-110 hover:bg-white/20 transition-all duration-300 group/play shadow-[0_0_30px_rgba(0,0,0,0.3)]"
+                className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center cursor-pointer hover:scale-110 hover:bg-white/20 transition-all duration-300 group/play shadow-[0_0_30px_rgba(0,0,0,0.3)]"
               >
-                <Play className="w-10 h-10 text-white fill-white ml-1 group-hover/play:scale-110 transition-transform" />
+                <Play className="w-6 h-6 md:w-10 md:h-10 text-white fill-white ml-1 group-hover/play:scale-110 transition-transform" />
               </div>
             </div>
 
             {/* Bottom Bar */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 flex justify-between items-end pointer-events-none">
-              <div className="text-white font-medium text-lg">Bloom</div>
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 flex flex-col md:flex-row justify-between items-end md:items-end pointer-events-none gap-4">
+              <div className="text-white font-medium text-lg w-full md:w-auto">Bloom</div>
 
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-8 pointer-events-auto">
+              <div className="pointer-events-auto w-full md:w-auto flex justify-center md:absolute md:left-1/2 md:-translate-x-1/2 md:bottom-8">
                 <div className="px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/10 flex items-center gap-2 text-sm text-white hover:bg-white/20 transition-colors cursor-pointer">
                   <Plus className="w-4 h-4" />
                   New Project
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 text-xs text-white/40 font-mono">
+              <div className="hidden md:flex items-center gap-4 text-xs text-white/40 font-mono">
                 <span>26th Apr, 2025</span>
                 <span className="px-2 py-1 rounded bg-white/10">24 clips</span>
               </div>
@@ -424,15 +424,15 @@ const Capabilities = () => {
   };
 
   return (
-    <section id="capabilities" className="relative py-32 z-10 overflow-hidden">
+    <section id="capabilities" className="relative py-20 md:py-32 z-10 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6">
         {/* Tabs Header */}
-        <div className="flex items-center gap-8 md:gap-12 mb-8 border-t border-white/10 pt-8 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-6 md:gap-12 mb-8 border-t border-white/10 pt-8 overflow-x-auto no-scrollbar">
           {capabilities.map((cap) => (
             <button
               key={cap.id}
               onClick={() => scrollToCategory(cap.id)}
-              className={`text-3xl md:text-5xl font-medium transition-all duration-500 whitespace-nowrap ${activeTab === cap.id
+              className={`text-2xl md:text-5xl font-medium transition-all duration-500 whitespace-nowrap ${activeTab === cap.id
                 ? "text-white blur-0"
                 : "text-white/20 blur-[2px] hover:text-white/40 hover:blur-[1px]"
                 }`}
@@ -443,7 +443,7 @@ const Capabilities = () => {
         </div>
 
         {/* Dynamic Description */}
-        <div className="h-24 mb-12">
+        <div className="h-32 md:h-24 mb-8 md:mb-12">
           <AnimatePresence mode="wait">
             <motion.p
               key={activeTab}
@@ -451,7 +451,7 @@ const Capabilities = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="text-xl md:text-2xl text-white/80 font-light leading-relaxed max-w-3xl"
+              className="text-lg md:text-2xl text-white/80 font-light leading-relaxed max-w-3xl"
             >
               {capabilities.find(c => c.id === activeTab)?.description}
             </motion.p>
@@ -462,12 +462,12 @@ const Capabilities = () => {
       {/* Horizontal Scroll Container */}
       <div
         ref={scrollContainerRef}
-        className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-6 md:px-[max(24px,calc(50vw-600px))] no-scrollbar pb-10"
+        className="flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory px-6 md:px-[max(24px,calc(50vw-600px))] no-scrollbar pb-10"
       >
         {allVideos.map((item, index) => (
           <div
             key={index}
-            className="snap-center shrink-0 w-[85vw] md:w-[800px] aspect-video rounded-[32px] overflow-hidden bg-[#1a1a1a] border border-white/10 relative group"
+            className="snap-center shrink-0 w-[85vw] md:w-[800px] aspect-video rounded-[20px] md:rounded-[32px] overflow-hidden bg-[#1a1a1a] border border-white/10 relative group"
           >
             <video
               autoPlay

@@ -18,7 +18,7 @@ export const Pricing = () => {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-20 space-y-6"
                 >
-                    <h2 className="text-5xl md:text-7xl font-normal tracking-tight">Start creating</h2>
+                    <h2 className="text-4xl md:text-7xl font-normal tracking-tight">Start creating</h2>
                     <h3 className="text-xl md:text-2xl text-white/70 font-light">
                         100 monthly credits free of charge or upgrade to one of our plans below.
                     </h3>
