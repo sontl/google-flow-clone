@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Play, Sparkles, Zap, Layers, MousePointer2 } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { ArrowRight, Play, Sparkles, Zap, Layers, MousePointer2, Plus, Settings2, MoreVertical } from "lucide-react";
 import Link from "next/link";
 
 // --- Components ---
@@ -119,78 +119,156 @@ const Hero = () => {
   );
 };
 
-const FeatureCard = ({ title, description, icon: Icon, className, delay = 0 }: { title: string, description: string, icon: any, className?: string, delay?: number }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
-    transition={{ delay, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-    className={`group relative p-10 rounded-[2rem] bg-neutral-900/40 backdrop-blur-md border border-white/10 hover:bg-neutral-800/40 hover:border-white/20 transition-all duration-500 overflow-hidden ${className}`}
-  >
-    <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
-      <Icon className="w-32 h-32 text-white" />
-    </div>
-    <div className="relative z-10 h-full flex flex-col justify-end">
-      <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
-        <Icon className="w-7 h-7 text-white" />
-      </div>
-      <h3 className="text-3xl font-medium text-white mb-4">{title}</h3>
-      <p className="text-white/60 text-lg leading-relaxed">{description}</p>
-    </div>
-  </motion.div>
-);
-
-const Features = () => {
+const ProductShowcase = () => {
   return (
-    <section className="relative py-32 px-6 max-w-7xl mx-auto z-10">
-      <div className="mb-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-5xl md:text-7xl font-medium tracking-tight text-white mb-8"
-        >
-          Designed for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">flow state.</span>
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-2xl text-white/50 max-w-3xl font-light"
-        >
-          Powerful tools that get out of your way. From text-to-video to advanced scene composition, everything is fluid.
-        </motion.p>
-      </div>
+    <section className="relative py-20 px-4 z-10 flex justify-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 40 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full max-w-[1200px] relative"
+      >
+        <div className="relative aspect-[16/9] rounded-[32px] overflow-hidden border border-white/10 bg-[#1a1a1a] shadow-2xl group">
+          {/* Main Video Content */}
+          <div className="absolute inset-0">
+            <img
+              src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/002_Bloom_1.width-1200.format-webp.webp"
+              alt="Bloom Project"
+              className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <FeatureCard
-          title="Generative Video"
-          description="Create high-fidelity video clips from text prompts. Control camera movement, lighting, and style with precision."
-          icon={Sparkles}
-          className="md:col-span-2 min-h-[500px]"
-        />
-        <FeatureCard
-          title="Real-time Editing"
-          description="Edit your generated content in real-time with our intuitive timeline interface."
-          icon={Zap}
-          className="min-h-[500px]"
-          delay={0.1}
-        />
-        <FeatureCard
-          title="Scene Composition"
-          description="Arrange multiple clips into a cohesive narrative with advanced scene tools."
-          icon={Layers}
-          className="min-h-[500px]"
-          delay={0.2}
-        />
-        <FeatureCard
-          title="Style Transfer"
-          description="Apply artistic styles to your footage instantly using our curated presets or your own reference images."
-          icon={MousePointer2}
-          className="md:col-span-2 min-h-[500px]"
-          delay={0.3}
-        />
+          {/* Top Bar */}
+          <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-start">
+            <span className="text-xs font-medium text-white/60 uppercase tracking-wider">Flow</span>
+            <div className="flex gap-4">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-xs text-white/80">
+                <div className="w-2 h-2 rounded-full bg-white/50" />
+                Watch Flow TV
+              </div>
+              <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/80">
+                ?
+              </div>
+              <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md border border-white/10 overflow-hidden">
+                <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-400" />
+              </div>
+            </div>
+          </div>
+
+          {/* Center Play Button */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-[#8B7355]/90 backdrop-blur-sm flex items-center justify-center pl-2 cursor-pointer hover:scale-105 transition-transform">
+              <Play className="w-10 h-10 text-white fill-white" />
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="absolute bottom-0 left-0 right-0 p-8 flex justify-between items-end">
+            <div className="text-white font-medium text-lg">Bloom</div>
+
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-8">
+              <div className="px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/10 flex items-center gap-2 text-sm text-white hover:bg-white/20 transition-colors cursor-pointer">
+                <Plus className="w-4 h-4" />
+                New Project
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 text-xs text-white/40 font-mono">
+              <span>26th Apr, 2025</span>
+              <span className="px-2 py-1 rounded bg-white/10">24 clips</span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+};
+
+const Capabilities = () => {
+  const [activeTab, setActiveTab] = useState("Consistent");
+  const tabs = ["Consistent", "Seamless", "Cinematic"];
+
+  return (
+    <section className="relative py-32 px-6 z-10">
+      <div className="max-w-[1200px] mx-auto">
+        {/* Tabs Header */}
+        <div className="flex items-center gap-12 mb-16 border-b border-white/10 pb-8">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`text-4xl md:text-5xl font-medium transition-all duration-500 ${activeTab === tab
+                  ? "text-white blur-0"
+                  : "text-white/20 blur-[2px] hover:text-white/40 hover:blur-[1px]"
+                }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+              >
+                <p className="text-2xl text-white/80 font-light leading-relaxed">
+                  Bring your own assets, or generate them in Flow. Then easily manage and reference them as you start to generate clips.
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* UI Mockup Area */}
+          <div className="relative">
+            <div className="rounded-3xl bg-[#1a1a1a] border border-white/10 p-1 overflow-hidden shadow-2xl">
+              <div className="bg-[#0a0a0a] rounded-[20px] p-6 min-h-[400px] flex flex-col justify-center">
+                {/* Text to Image UI Mockup */}
+                <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-white/5">
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-xs font-medium text-white/40 px-3 py-1 rounded-full bg-white/5">Text to Image</span>
+                    <Settings2 className="w-4 h-4 text-white/40" />
+                  </div>
+                  <div className="text-xl text-white/90 font-light mb-8">
+                    Backseat of a 1970's taxi with worn zebra print cloth|
+                    <span className="animate-pulse text-blue-400">|</span>
+                  </div>
+                  <div className="flex justify-end">
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                      <ArrowRight className="w-5 h-5 text-white/40" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Generated Assets Preview (Bottom) */}
+                <div className="mt-8 grid grid-cols-3 gap-4 opacity-50">
+                  <div className="aspect-square rounded-xl bg-white/5" />
+                  <div className="aspect-square rounded-xl bg-white/5" />
+                  <div className="aspect-square rounded-xl bg-white/5" />
+                </div>
+              </div>
+            </div>
+
+            {/* Floating Cursor Mockup */}
+            <motion.div
+              animate={{ x: [0, 20, 0], y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-10 right-10"
+            >
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 28V4L26 20H17.3L22.3 28H10Z" fill="white" stroke="black" strokeWidth="2" />
+              </svg>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -239,7 +317,8 @@ export default function Home() {
       <BackgroundVideo />
       <Navbar />
       <Hero />
-      <Features />
+      <ProductShowcase />
+      <Capabilities />
       <Footer />
     </main>
   );
