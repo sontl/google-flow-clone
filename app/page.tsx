@@ -119,6 +119,29 @@ const Hero = () => {
   );
 };
 
+const SloganSection = () => {
+  return (
+    <section className="relative py-32 px-4 z-10 flex flex-col items-center justify-center text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-5xl mx-auto space-y-8"
+      >
+        <h2 className="text-5xl md:text-7xl font-normal tracking-tight text-white leading-[1.1]">
+          Flow is an AI filmmaking tool <br />
+          built with and for creatives.
+        </h2>
+        <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed">
+          Seamlessly create cinematic clips, scenes and stories using <br className="hidden md:block" />
+          Google’s most capable generative AI models.
+        </p>
+      </motion.div>
+    </section>
+  );
+};
+
 const ProductShowcase = () => {
   return (
     <section className="relative py-20 px-4 z-10 flex justify-center">
@@ -317,6 +340,7 @@ export default function Home() {
       <BackgroundVideo />
       <Navbar />
       <Hero />
+      <SloganSection />
       <ProductShowcase />
       <Capabilities />
       <Footer />
