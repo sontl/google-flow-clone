@@ -18,12 +18,36 @@ const DiscordIcon = () => (
 
 const Navbar = () => {
   const [scrolled, setScrolled] = React.useState(false);
+  const [activeSection, setActiveSection] = useState("overview");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > window.innerHeight - 100;
+      setScrolled(isScrolled);
+
+      // Determine active section
+      const sections = ["overview", "capabilities", "partners", "gallery", "pricing"];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 200 && rect.bottom >= 200) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 py-6 transition-all duration-500">
@@ -47,6 +71,19 @@ const Navbar = () => {
             SingMeSong
           </span>
         </div>
+      </div>
+
+      {/* Center Menu - Visible only when scrolled */}
+      <div className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center gap-8 transition-all duration-500 ${scrolled ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+        {["Overview", "Capabilities", "Partners", "Gallery", "Pricing"].map((item) => (
+          <button
+            key={item}
+            onClick={() => scrollToSection(item.toLowerCase())}
+            className={`text-sm font-medium transition-colors ${activeSection === item.toLowerCase() ? "text-white" : "text-white/50 hover:text-white/80"}`}
+          >
+            {item}
+          </button>
+        ))}
       </div>
 
       <div className="flex items-center gap-6">
@@ -133,9 +170,9 @@ const Hero = () => {
   );
 };
 
-const SloganSection = () => {
+const Overview = () => {
   return (
-    <section className="relative py-32 px-4 z-10 flex flex-col items-center justify-center text-center">
+    <section id="overview" className="relative py-32 px-4 z-10 flex flex-col items-center justify-center text-center">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -387,7 +424,7 @@ const Capabilities = () => {
   };
 
   return (
-    <section className="relative py-32 z-10 overflow-hidden">
+    <section id="capabilities" className="relative py-32 z-10 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6">
         {/* Tabs Header */}
         <div className="flex items-center gap-8 md:gap-12 mb-8 border-t border-white/10 pt-8 overflow-x-auto no-scrollbar">
@@ -498,11 +535,15 @@ export default function Home() {
       <BackgroundVideo />
       <Navbar />
       <Hero />
-      <SloganSection />
+      <Overview />
       <ProductShowcase />
       <Capabilities />
-      <Creators />
-      <Gallery />
+      <section id="partners">
+        <Creators />
+      </section>
+      <section id="gallery">
+        <Gallery />
+      </section>
       <Pricing />
       {/* <Footer /> */}
     </main>
