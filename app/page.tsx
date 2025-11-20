@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowRight, Play, Sparkles, Zap, Layers, MousePointer2, Plus, Settings2, MoreVertical, X } from "lucide-react";
 import Link from "next/link";
+import { Creators } from "./components/Creators";
 
 // --- Icons ---
 
@@ -497,6 +498,10 @@ const Footer = () => (
   </footer>
 );
 
+import { Gallery } from "./components/Gallery";
+
+// ... (existing imports)
+
 export default function Home() {
   return (
     <main className="min-h-screen selection:bg-blue-500/30">
@@ -506,6 +511,8 @@ export default function Home() {
       <SloganSection />
       <ProductShowcase />
       <Capabilities />
+      <Creators />
+      <Gallery />
       <Footer />
     </main>
   );
