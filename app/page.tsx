@@ -37,10 +37,10 @@ const Navbar = () => {
         className={`absolute inset-0 -z-10 transition-opacity duration-700 ${scrolled ? "opacity-100" : "opacity-0"}`}
       >
         <div
-          className="absolute inset-0 bg-black/40 backdrop-blur-xl"
+          className="absolute inset-0 bg-black/20 backdrop-blur-lg"
           style={{
-            maskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, black 20%, transparent 100%)"
+            maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)"
           }}
         />
       </div>
