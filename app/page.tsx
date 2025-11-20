@@ -289,87 +289,162 @@ const ProductShowcase = () => {
 
 const Capabilities = () => {
   const [activeTab, setActiveTab] = useState("Consistent");
-  const tabs = ["Consistent", "Seamless", "Cinematic"];
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isManualScrolling, setIsManualScrolling] = useState(false);
+
+  const capabilities = [
+    {
+      id: "Consistent",
+      title: "Consistent",
+      description: "Bring your own assets, or generate them in Flow. Then easily manage and reference them as you start to generate clips.",
+      videos: [
+        "https://storage.googleapis.com/pinhole-about-assets-prod-asia/Consistent/16x9/01_Ingredients_Edit%201%2016x9_250516d.mp4",
+        "https://storage.googleapis.com/pinhole-about-assets-prod-asia/Consistent/16x9/02_Ingredients%20to%20video_Edit03_16x9_250516e.mp4",
+        "https://storage.googleapis.com/pinhole-about-assets-prod-asia/Consistent/16x9/03%20Frames%20to%20Video_250516a.mp4"
+      ]
+    },
+    {
+      id: "Seamless",
+      title: "Seamless",
+      description: "An interface designed for the creative story-building process from ideation to iteration.",
+      videos: [
+        "https://storage.googleapis.com/pinhole-about-assets-prod-asia/Seamless/16x9/04%20Scene%20Builder_250513c_1.mp4",
+        "https://storage.googleapis.com/pinhole-about-assets-prod-asia/Seamless/16x9/05_JumpTo_250516a.mp4",
+        "https://storage.googleapis.com/pinhole-about-assets-prod-asia/Seamless/16x9/06_Extend_5mb_250519a.mp4"
+      ]
+    },
+    {
+      id: "Cinematic",
+      title: "Cinematic",
+      description: "State-of-the-art video quality made possible by Google DeepMind’s most advanced models.",
+      videos: [
+        "https://storage.googleapis.com/pinhole-about-assets-prod-asia/Cinematic/16x9/07_CameraControls_Edit02%2016x9_250516e.mp4",
+        "https://storage.googleapis.com/pinhole-about-assets-prod-asia/Cinematic/16x9/08_VEO_Cinematic_Edit01_16x9_250516e.mp4"
+      ]
+    }
+  ];
+
+  // Flatten videos for easier rendering, but keep track of their parent category
+  const allVideos = capabilities.flatMap(cap =>
+    cap.videos.map(video => ({ ...cap, videoUrl: video }))
+  );
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      if (isManualScrolling) return;
+
+      const containerCenter = container.scrollLeft + container.clientWidth / 2;
+      let closestVideoIndex = 0;
+      let minDistance = Number.MAX_VALUE;
+
+      // Find the video closest to the center of the container
+      const children = Array.from(container.children) as HTMLElement[];
+      children.forEach((child, index) => {
+        const childCenter = child.offsetLeft + child.offsetWidth / 2;
+        const distance = Math.abs(childCenter - containerCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestVideoIndex = index;
+        }
+      });
+
+      const activeVideo = allVideos[closestVideoIndex];
+      if (activeVideo && activeVideo.id !== activeTab) {
+        setActiveTab(activeVideo.id);
+      }
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [activeTab, isManualScrolling, allVideos]);
+
+  const scrollToCategory = (categoryId: string) => {
+    setIsManualScrolling(true);
+    setActiveTab(categoryId);
+
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    // Find the index of the first video in this category
+    const firstVideoIndex = allVideos.findIndex(v => v.id === categoryId);
+    if (firstVideoIndex !== -1) {
+      const children = Array.from(container.children) as HTMLElement[];
+      const targetElement = children[firstVideoIndex];
+
+      if (targetElement) {
+        container.scrollTo({
+          left: targetElement.offsetLeft - (container.clientWidth - targetElement.clientWidth) / 2, // Center it
+          behavior: "smooth"
+        });
+      }
+    }
+
+    // Reset manual scrolling lock after animation
+    setTimeout(() => setIsManualScrolling(false), 600);
+  };
 
   return (
-    <section className="relative py-32 px-6 z-10">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="relative py-32 z-10 overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-6">
         {/* Tabs Header */}
-        <div className="flex items-center gap-12 mb-16 border-b border-white/10 pb-8">
-          {tabs.map((tab) => (
+        <div className="flex items-center gap-8 md:gap-12 mb-8 border-t border-white/10 pt-8 overflow-x-auto no-scrollbar">
+          {capabilities.map((cap) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`text-4xl md:text-5xl font-medium transition-all duration-500 ${activeTab === tab
+              key={cap.id}
+              onClick={() => scrollToCategory(cap.id)}
+              className={`text-3xl md:text-5xl font-medium transition-all duration-500 whitespace-nowrap ${activeTab === cap.id
                 ? "text-white blur-0"
                 : "text-white/20 blur-[2px] hover:text-white/40 hover:blur-[1px]"
                 }`}
             >
-              {tab}
+              {cap.title}
             </button>
           ))}
         </div>
 
-        {/* Tab Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-              >
-                <p className="text-2xl text-white/80 font-light leading-relaxed">
-                  Bring your own assets, or generate them in Flow. Then easily manage and reference them as you start to generate clips.
-                </p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* UI Mockup Area */}
-          <div className="relative">
-            <div className="rounded-3xl bg-[#1a1a1a] border border-white/10 p-1 overflow-hidden shadow-2xl">
-              <div className="bg-[#0a0a0a] rounded-[20px] p-6 min-h-[400px] flex flex-col justify-center">
-                {/* Text to Image UI Mockup */}
-                <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-white/5">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-xs font-medium text-white/40 px-3 py-1 rounded-full bg-white/5">Text to Image</span>
-                    <Settings2 className="w-4 h-4 text-white/40" />
-                  </div>
-                  <div className="text-xl text-white/90 font-light mb-8">
-                    Backseat of a 1970's taxi with worn zebra print cloth|
-                    <span className="animate-pulse text-blue-400">|</span>
-                  </div>
-                  <div className="flex justify-end">
-                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                      <ArrowRight className="w-5 h-5 text-white/40" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Generated Assets Preview (Bottom) */}
-                <div className="mt-8 grid grid-cols-3 gap-4 opacity-50">
-                  <div className="aspect-square rounded-xl bg-white/5" />
-                  <div className="aspect-square rounded-xl bg-white/5" />
-                  <div className="aspect-square rounded-xl bg-white/5" />
-                </div>
-              </div>
-            </div>
-
-            {/* Floating Cursor Mockup */}
-            <motion.div
-              animate={{ x: [0, 20, 0], y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-10 right-10"
+        {/* Dynamic Description */}
+        <div className="h-24 mb-12">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={activeTab}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="text-xl md:text-2xl text-white/80 font-light leading-relaxed max-w-3xl"
             >
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 28V4L26 20H17.3L22.3 28H10Z" fill="white" stroke="black" strokeWidth="2" />
-              </svg>
-            </motion.div>
-          </div>
+              {capabilities.find(c => c.id === activeTab)?.description}
+            </motion.p>
+          </AnimatePresence>
         </div>
+      </div>
+
+      {/* Horizontal Scroll Container */}
+      <div
+        ref={scrollContainerRef}
+        className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-6 md:px-[max(24px,calc(50vw-600px))] no-scrollbar pb-10"
+      >
+        {allVideos.map((item, index) => (
+          <div
+            key={index}
+            className="snap-center shrink-0 w-[85vw] md:w-[800px] aspect-video rounded-[32px] overflow-hidden bg-[#1a1a1a] border border-white/10 relative group"
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src={item.videoUrl} type="video/mp4" />
+            </video>
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+          </div>
+        ))}
       </div>
     </section>
   );
