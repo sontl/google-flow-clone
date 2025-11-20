@@ -75,7 +75,13 @@ const galleryData = {
 
 const GalleryColumn = ({ items, direction = "up", speed = 40 }: { items: typeof galleryData.col1, direction?: "up" | "down", speed?: number }) => {
     return (
-        <div className="relative h-[800px] overflow-hidden w-full">
+        <div
+            className="relative h-[800px] overflow-hidden w-full"
+            style={{
+                maskImage: "linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)"
+            }}
+        >
             <motion.div
                 initial={{ y: direction === "up" ? 0 : "-50%" }}
                 animate={{ y: direction === "up" ? "-50%" : 0 }}
@@ -112,16 +118,18 @@ const GalleryColumn = ({ items, direction = "up", speed = 40 }: { items: typeof 
             </motion.div>
 
             {/* Top and Bottom Gradient Masks for smooth fade out */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black via-black/80 to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black via-black/80 to-transparent z-10 pointer-events-none" />
+
         </div>
     );
 };
 
 export const Gallery = () => {
     return (
-        <section className="relative py-20 bg-black overflow-hidden">
-            <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+        <section className="relative py-20 overflow-hidden z-10">
+            {/* Background with fade in/out transition */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] -z-10" />
+
+            <div className="max-w-[1400px] mx-auto px-4 md:px-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <GalleryColumn items={galleryData.col1} direction="up" speed={50} />
                     <GalleryColumn items={galleryData.col2} direction="down" speed={60} />

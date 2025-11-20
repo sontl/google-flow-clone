@@ -8,12 +8,6 @@ import { Creators } from "./components/Creators";
 
 // --- Icons ---
 
-const GoogleLogo = () => (
-  <svg width="74" height="24" viewBox="0 0 74 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9.36 10.68V13.56H15.72C15.48 15.06 14.28 17.46 9.36 17.46C6.48 17.46 4.2 15.12 4.2 12.18C4.2 9.24 6.48 6.9 9.36 6.9C11.04 6.9 12.12 7.62 12.78 8.22L14.82 6.18C13.44 4.86 11.64 4.02 9.36 4.02C4.86 4.02 1.2 7.68 1.2 12.18C1.2 16.68 4.86 20.34 9.36 20.34C14.1 20.34 17.22 17.04 17.22 12.36C17.22 11.76 17.16 11.16 17.04 10.68H9.36ZM24.48 13.62C24.48 16.32 22.44 18.06 20.28 18.06C18.06 18.06 16.08 16.26 16.08 13.62C16.08 10.92 18.06 9.12 20.28 9.12C22.44 9.12 24.48 10.92 24.48 13.62ZM21.9 13.62C21.9 11.94 21.18 10.8 20.28 10.8C19.32 10.8 18.6 11.94 18.6 13.62C18.6 15.24 19.32 16.38 20.28 16.38C21.18 16.38 21.9 15.24 21.9 13.62ZM34.08 13.62C34.08 16.32 32.04 18.06 29.88 18.06C27.66 18.06 25.68 16.26 25.68 13.62C25.68 10.92 27.66 9.12 29.88 9.12C32.04 9.12 34.08 10.92 34.08 13.62ZM31.5 13.62C31.5 11.94 30.78 10.8 29.88 10.8C28.92 10.8 28.2 11.94 28.2 13.62C28.2 15.24 28.92 16.38 29.88 16.38C30.78 16.38 31.5 15.24 31.5 13.62ZM43.32 9.42L40.62 16.26H40.5L37.68 9.42H35.04L39.18 18.66L36.84 23.82H39.48L46.02 9.42H43.32ZM50.4 17.76H52.86V4.32H50.4V17.76ZM61.8 13.62C61.8 11.7 60.42 9.12 57.66 9.12C55.38 9.12 53.7 11.04 53.7 13.62C53.7 16.26 55.38 18.06 57.9 18.06C59.76 18.06 60.9 17.1 61.62 16.02L60.06 14.94C59.58 15.72 58.86 16.38 57.9 16.38C56.94 16.38 56.28 15.9 55.86 15.06L61.86 12.54L61.56 11.82C61.08 10.56 59.64 9.12 57.6 9.12C55.68 9.12 53.7 10.8 53.7 13.62C53.7 16.26 55.38 18.06 57.9 18.06C60.48 18.06 62.04 16.5 62.04 16.5L60.24 15.3C59.82 15.9 59.1 16.38 58.38 16.38C57.66 16.38 57.18 15.9 56.88 15.48L61.8 13.62Z" fill="white" />
-  </svg>
-);
-
 const DiscordIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M18.942 5.556C17.508 4.895 15.977 4.415 14.382 4.17C14.382 4.17 14.142 4.605 13.967 5.025C12.272 4.785 10.587 4.785 8.907 5.025C8.732 4.605 8.492 4.17 8.492 4.17C6.897 4.415 5.367 4.895 3.932 5.556C1.037 9.885 0.242 14.115 0.632 18.285C2.372 19.575 4.052 20.355 5.687 20.865C6.092 20.31 6.452 19.725 6.752 19.11C6.137 18.885 5.552 18.6 4.997 18.27C5.147 18.165 5.297 18.045 5.432 17.925C8.792 19.47 12.422 19.47 15.737 17.925C15.887 18.045 16.037 18.15 16.172 18.27C15.617 18.6 15.032 18.885 14.417 19.11C14.717 19.725 15.077 20.31 15.482 20.865C17.117 20.355 18.797 19.575 20.537 18.285C21.002 13.575 19.797 9.375 18.942 5.556ZM7.667 15.495C6.647 15.495 5.807 14.55 5.807 13.41C5.807 12.27 6.632 11.325 7.667 11.325C8.717 11.325 9.542 12.27 9.527 13.41C9.527 14.55 8.702 15.495 7.667 15.495ZM15.227 15.495C14.207 15.495 13.367 14.55 13.367 13.41C13.367 12.27 14.192 11.325 15.227 11.325C16.277 11.325 17.102 12.27 17.087 13.41C17.087 14.55 16.277 15.495 15.227 15.495Z" fill="white" />
@@ -48,16 +42,11 @@ const Navbar = () => {
 
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
-            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor" fillOpacity="0.3" />
-            <path d="M12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6ZM12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16Z" fill="currentColor" />
-          </svg>
+          <img src="https://singmesong.com/assets/logo-DGhPePnM.png" alt="SingMeSong Logo" className="w-7 h-7 rounded-full" />
           <span className="text-xl font-medium tracking-tight text-white">
-            Google Labs
+            SingMeSong
           </span>
         </div>
-        <span className="text-white/20 text-xl font-light">/</span>
-        <span className="text-xl font-medium tracking-tight text-white">Flow</span>
       </div>
 
       <div className="flex items-center gap-6">
@@ -466,8 +455,8 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-16">
       <div>
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500" />
-          <span className="text-2xl font-medium text-white">Google Labs</span>
+          <img src="https://singmesong.com/assets/logo-DGhPePnM.png" alt="SingMeSong Logo" className="w-8 h-8 rounded-full" />
+          <span className="text-2xl font-medium text-white">SingMeSong</span>
         </div>
         <p className="text-white/40 max-w-xs text-lg font-light">
           Experimenting with the future of AI and creativity.
@@ -499,6 +488,7 @@ const Footer = () => (
 );
 
 import { Gallery } from "./components/Gallery";
+import { Pricing } from "./components/Pricing";
 
 // ... (existing imports)
 
@@ -513,7 +503,8 @@ export default function Home() {
       <Capabilities />
       <Creators />
       <Gallery />
-      <Footer />
+      <Pricing />
+      {/* <Footer /> */}
     </main>
   );
 }
