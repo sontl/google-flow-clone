@@ -31,10 +31,20 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 py-6 transition-all duration-500 ${scrolled ? "bg-black/20 backdrop-blur-xl border-b border-white/5" : "bg-transparent"
-        }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 py-6 transition-all duration-500">
+      {/* Glass Background with Gradient Fade */}
+      <div
+        className={`absolute inset-0 -z-10 transition-opacity duration-700 ${scrolled ? "opacity-100" : "opacity-0"}`}
+      >
+        <div
+          className="absolute inset-0 bg-black/40 backdrop-blur-xl"
+          style={{
+            maskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 20%, transparent 100%)"
+          }}
+        />
+      </div>
+
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
